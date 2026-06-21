@@ -13,9 +13,25 @@ import {
 
 export function createApp(repository: UsersRepository = mysqlUsersRepository) {
   const app = express();
+  const allowedOrigins = new Set([
+    env.CORS_ORIGIN,
+    "http://localhost:5173",
+    "http://127.0.0.1:5173"
+  ]);
 
   app.use(helmet());
-  app.use(cors({ origin: env.CORS_ORIGIN }));
+  app.use(
+    cors({
+      origin(origin, callback) {
+        if (!origin || allowedOrigins.has(origin)) {
+          callback(null, true);
+          return;
+        }
+
+        callback(new Error("Origin is not allowed by CORS."));
+      }
+    })
+  );
   app.use(express.json({ limit: "1mb" }));
   app.use(pinoHttp({ logger }));
 
