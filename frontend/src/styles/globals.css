@@ -1,0 +1,136 @@
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@import "@fontsource-variable/geist";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+    --background: 210 24% 97%;
+    --foreground: 218 24% 13%;
+    --card: 0 0% 100%;
+    --card-foreground: 218 24% 13%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 218 24% 13%;
+    --primary: 173 42% 27%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 205 18% 91%;
+    --secondary-foreground: 218 22% 16%;
+    --muted: 210 18% 93%;
+    --muted-foreground: 216 11% 42%;
+    --accent: 34 72% 52%;
+    --accent-foreground: 34 70% 13%;
+    --destructive: 356 66% 43%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 214 16% 84%;
+    --input: 214 16% 84%;
+    --ring: 173 42% 27%;
+    --chart-1: 173 42% 27%;
+    --chart-2: 34 72% 52%;
+    --chart-3: 211 32% 34%;
+    --chart-4: 352 45% 48%;
+    --chart-5: 93 20% 42%;
+    --radius: 0.5rem;
+    --sidebar: 0 0% 100%;
+    --sidebar-foreground: 218 24% 13%;
+    --sidebar-primary: 173 42% 27%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 205 18% 91%;
+    --sidebar-accent-foreground: 218 22% 16%;
+    --sidebar-border: 214 16% 84%;
+    --sidebar-ring: 173 42% 27%;
+    --font-heading: var(--font-sans);
+    --font-sans: "Geist Variable", ui-sans-serif, system-ui, sans-serif;
+  }
+
+  .dark {
+    color-scheme: dark;
+    --background: 218 25% 8%;
+    --foreground: 210 22% 93%;
+    --card: 218 22% 11%;
+    --card-foreground: 210 22% 93%;
+    --popover: 218 22% 11%;
+    --popover-foreground: 210 22% 93%;
+    --primary: 171 41% 48%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 218 18% 17%;
+    --secondary-foreground: 210 22% 93%;
+    --muted: 218 17% 16%;
+    --muted-foreground: 214 13% 69%;
+    --accent: 36 74% 56%;
+    --accent-foreground: 36 71% 10%;
+    --destructive: 356 76% 61%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 217 15% 24%;
+    --input: 217 15% 25%;
+    --ring: 171 41% 48%;
+    --chart-1: 171 41% 48%;
+    --chart-2: 36 74% 56%;
+    --chart-3: 210 38% 65%;
+    --chart-4: 352 52% 64%;
+    --chart-5: 94 24% 58%;
+    --sidebar: 218 22% 11%;
+    --sidebar-foreground: 210 22% 93%;
+    --sidebar-primary: 171 41% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 218 18% 17%;
+    --sidebar-accent-foreground: 210 22% 93%;
+    --sidebar-border: 217 15% 24%;
+    --sidebar-ring: 171 41% 48%;
+  }
+
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    min-width: 320px;
+    @apply font-sans;
+  }
+
+  body {
+    min-height: 100vh;
+    margin: 0;
+    @apply bg-background text-foreground antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  body::before {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    content: "";
+    background:
+      linear-gradient(to right, hsl(var(--border) / 0.28) 1px, transparent 1px),
+      linear-gradient(to bottom, hsl(var(--border) / 0.22) 1px, transparent 1px),
+      linear-gradient(180deg, hsl(var(--background)), hsl(var(--muted) / 0.42));
+    background-size: 48px 48px, 48px 48px, auto;
+    mask-image: linear-gradient(to bottom, black, transparent 70%);
+  }
+
+  button,
+  input,
+  textarea,
+  select {
+    font: inherit;
+  }
+}
+
+@keyframes enter-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.enter-up {
+  animation: enter-up 420ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
